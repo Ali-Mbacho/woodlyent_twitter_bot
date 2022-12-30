@@ -19,7 +19,7 @@ def authenticate_api():
     api = tweepy.API(auth, wait_on_rate_limit=True)
     return api
     
-FILE_NAME = "last_seen_id.txt"
+FILE_NAME = 'last_seen_id.txt'
 
 def retrive_last_seen_id(file_name):
     f_read = open(file_name, 'r')
@@ -27,7 +27,7 @@ def retrive_last_seen_id(file_name):
     f_read.close()
     return last_seen_id
 
-def store_last_seen_id(file_name, last_seen_id):
+def store_last_seen_id(last_seen_id, file_name):
     f_write = open(file_name, 'w')
     f_write.write(str(last_seen_id))
     f_write.close()
@@ -43,6 +43,10 @@ def auto_retweet():
             # last_seen_id = tweet.id
             authenticate_api.retweet(tweet.id)
             authenticate_api.create_favorite(tweet.id)
-            store_last_seen_id(file_name, tweet.id)
+            store_last_seen_id(FILE_NAME, tweet.id)
         except tweepy.TweepError as e:
             print(e.reason)
+
+
+if __name__ == "__main__":
+    auto_retweet()
