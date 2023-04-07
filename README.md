@@ -18,4 +18,4 @@ Strategies
 3.Post regularly \
 -Twitter bot  
 -Manual post  
-4. Analytics  \
+4. Analytics  
